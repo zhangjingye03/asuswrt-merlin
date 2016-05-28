@@ -2554,6 +2554,30 @@ fi; \
 		sed -i "/CONFIG_NETFILTER_XT_TARGET_TPROXY/d" $(1); \
 		echo "CONFIG_NETFILTER_XT_TARGET_TPROXY=m" >>$(1); \
 	fi;\
+	if [ "$(AUDIO)" = "y" ]; then \
+		sed -i "/CONFIG_SND_USB_AUDIO/d" $(1); \
+		sed -i "/CONFIG_SND_USB/d" $(1); \
+		sed -i "/CONFIG_SND_ARM/d" $(1); \
+		sed -i "/CONFIG_SND_PCI/d" $(1); \
+		sed -i "/CONFIG_SND_DRIVERS/d" $(1); \
+		sed -i "/CONFIG_SOUND/d" $(1); \
+		sed -i "/CONFIG_SND_TIMER/d" $(1); \
+		sed -i "/CONFIG_SND_PCM/d" $(1); \
+		sed -i "/CONFIG_SND_HWDEP/d" $(1); \
+		sed -i "/CONFIG_SND_RAWMIDI/d" $(1); \
+		sed -i "/CONFIG_SND/d" $(1); \
+		echo "CONFIG_SND_ARM=y" >>$(1); \
+		echo "CONFIG_SND_USB=y" >>$(1); \
+		echo "CONFIG_SND_USB_AUDIO=m" >>$(1); \
+		echo "CONFIG_SND_PCI=n" >>$(1); \
+		echo "CONFIG_SND_DRIVERS=y" >>$(1); \
+		echo "CONFIG_SOUND=m" >>$(1); \
+		echo "CONFIG_SND=m" >>$(1); \
+		echo "CONFIG_SND_TIMER=m" >>$(1); \
+		echo "CONFIG_SND_PCM=m" >>$(1); \
+		echo "CONFIG_SND_HWDEP=m" >>$(1); \
+		echo "CONFIG_SND_RAWMIDI=m" >>$(1); \
+	fi; \
 	)
 	$(call platformKernelConfig, $(1))
 	$(call extraKernelConfig, $(1))
